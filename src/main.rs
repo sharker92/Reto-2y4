@@ -265,24 +265,28 @@ fn main() {
                 }
                 //println!("{}",data[i].chars().nth(a).unwrap());
             }
-            //for r in 0..data[i].len(){
                 println!("{} ", contador[x]);
-                if contador[x] == 2 && bandera_doble >= 0{
-                    contador_doble += 1;
+                if contador[x] == 2 {
+                    //contador_doble += 1;
                     bandera_doble += 1;
-                    println!("dos");
+                //    println!("dos");
                 //    println!("{}",data[i].chars().nth(*r).unwrap());
-            } else if contador[x] == 3 && bandera_triple == 0{
-                    contador_triple += 1;
+            } else if contador[x] == 3 {
+                    //contador_triple += 1;
                     bandera_triple += 1;
-                    bandera_doble -= 1; //
-
-                    println!("tres");
+                //    println!("tres");
                 }
-                println!("------------------------------------------------------");
-            //}
-        }
+                //println!("------------------------------------------------------");
 
+        }
+        bandera_doble -= bandera_triple;
+
+        if bandera_triple > 0 {
+            contador_triple += 1;
+        }
+        if bandera_doble > 0 {
+            contador_doble += 1;
+        }
         println!("El Checksum es de {} x {}", contador_doble, contador_triple);
     }
     println!("El Checksum es de {} x {} = {}", contador_doble, contador_triple, contador_doble * contador_triple);
