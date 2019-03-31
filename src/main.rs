@@ -1,5 +1,6 @@
 fn main() {
     //let data = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"];
+//    let data = ["abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"];
     let data = ["mphcuiszrnjzxwkbgdzqeoyxfa",
 "mihcuisgrnjzxwkbgdtqeoylia",
 "mphauisvrnjgxwkbgdtqeiylfa",
@@ -291,4 +292,34 @@ fn main() {
     }
     println!("El Checksum es de {} x {} = {}", contador_doble, contador_triple, contador_doble * contador_triple);
 
+
+    let mut bandera_diferencia = 0;
+    let mut respuesta_2_1 = String::new();
+
+    for i in 0..data.len(){ //ciclo del arreglo
+        for x in i+1..data.len(){ //ciclo de la palabra a comparar
+            //println!("{} {}", i, x);
+            for a in 0..data[i].len(){ //ciclo de comparación de letras
+                if data[i].chars().nth(a).unwrap() != data[x].chars().nth(a).unwrap(){
+                    bandera_diferencia += 1;
+                    //println!("{} {}", data[i].chars().nth(a).unwrap(), data[x].chars().nth(a).unwrap());
+                }
+                if bandera_diferencia > 1 {
+                    //println!("{} ", data[i]);
+                    break;
+                }
+            }
+            if bandera_diferencia == 1 {
+                println!("{} {}", data[i], data[x]);
+
+                for a in 0..data[i].len(){ //ciclo de grabar palabra correcta
+                    if data[i].chars().nth(a).unwrap() == data[x].chars().nth(a).unwrap(){
+                        respuesta_2_1.push(data[i].chars().nth(a).unwrap());
+                    }
+                }
+            }
+            bandera_diferencia = 0;
+        }
+    }
+    println!("{}", respuesta_2_1);
 }
