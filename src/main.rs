@@ -1,6 +1,6 @@
 fn main() {
-    let data = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"];
-    /*let data = ["mphcuiszrnjzxwkbgdzqeoyxfa",
+    //let data = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"];
+    let data = ["mphcuiszrnjzxwkbgdzqeoyxfa",
 "mihcuisgrnjzxwkbgdtqeoylia",
 "mphauisvrnjgxwkbgdtqeiylfa",
 "mphcuisnrnjzxwkbgdgqeoylua",
@@ -249,7 +249,7 @@ fn main() {
 "mphcuisprnjwxwtbgdtqeoylfa",
 "mphcuissrnjzxqkbgdtqeoymfa",
 "mphcuiabrnjzxokbgdtqeoylfa",
-"mphcuisvrnczxwkbgmtpeoylfa"];*/
+"mphcuisvrnczxwkbgmtpeoylfa"];
 
     let mut contador_doble = 0;
     let mut contador_triple =0;
@@ -258,36 +258,36 @@ fn main() {
         let mut contador = vec![0 ; data[i].len()];
         let mut bandera_triple = 0;
         let mut bandera_doble = 0;
+        let mut bandera_extra = 0;
         for x in 0..data[i].len(){ //ciclo de la letra a comparar
             for a in x..data[i].len(){ //ciclo de comparación con el resto de las letras
                 if data[i].chars().nth(x).unwrap() == data[i].chars().nth(a).unwrap(){
                     contador[x] +=1;
                 }
-                //println!("{}",data[i].chars().nth(a).unwrap());
             }
-                println!("{} ", contador[x]);
                 if contador[x] == 2 {
-                    //contador_doble += 1;
                     bandera_doble += 1;
-                //    println!("dos");
-                //    println!("{}",data[i].chars().nth(*r).unwrap());
-            } else if contador[x] == 3 {
-                    //contador_triple += 1;
-                    bandera_triple += 1;
-                //    println!("tres");
-                }
-                //println!("------------------------------------------------------");
+            //        println!("dos");
 
+            } else if contador[x] == 3 {
+
+                    bandera_triple += 1;
+            //        println!("tres");
+            } else if contador[x] > 3{
+                bandera_extra += 1;
+            //    println!("gotcha");
+            }
         }
         bandera_doble -= bandera_triple;
-
+        bandera_triple -= bandera_extra;
+        //depuración de contadores extra
         if bandera_triple > 0 {
             contador_triple += 1;
         }
         if bandera_doble > 0 {
             contador_doble += 1;
         }
-        println!("El Checksum es de {} x {}", contador_doble, contador_triple);
+        //println!("El Checksum es de {} x {}", contador_doble, contador_triple);
     }
     println!("El Checksum es de {} x {} = {}", contador_doble, contador_triple, contador_doble * contador_triple);
 
